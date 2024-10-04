@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option csharp_namespace = "AccountBalance.API";
+
+package account;
+
+service AccountService {
+  rpc CreateAccount(CreateAccountRequest) returns (AccountResponce);
+  rpc GetAccount(GetAccountRequest) returns (AccountResponce);
+  rpc Credit(CreditRequest) returns (BalanceResponce);
+  rpc Debit(DebitRequest) returns (BalanceResponce);
+}
+
+message CreateAccountRequest {
+  string name = 1;
+}
+
+message GetAccountRequest {
+  string id = 1;
+}
+
+message CreditRequest {
+	string id = 1;
+	double amount = 2;
+}
+
+message DebitRequest {
+	string id = 1;
+	double amount = 2;
+}
+
+message AccountResponce {
+	string id = 1;
+	string name = 2;
+	double balance = 3;
+}
+
+message BalanceResponce {
+  double balance = 1;
+}

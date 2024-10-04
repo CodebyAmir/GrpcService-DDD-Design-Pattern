@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService2";
+
+service AccountService {
+    rpc GetAccount (GetAccountRequest) returns (GetAccountResponse);
+    rpc CreateAccount (CreateAccountRequest) returns (CreateAccountResponse);
+    rpc UpdateBalance (UpdateBalanceRequest) returns (UpdateBalanceResponse);
+    rpc DeleteAccount (DeleteAccountRequest) returns (DeleteAccountResponse);
+}
+
+message Account {
+    string id = 1;
+    string accountHolderName = 2;
+    double balance = 3;
+}
+
+message GetAccountRequest {
+    string id = 1;
+}
+
+message GetAccountResponse {
+    Account account = 1;
+}
+
+message CreateAccountRequest {
+    string accountHolderName = 1;
+    double initialBalance = 2;
+}
+
+message CreateAccountResponse {
+    string id = 1;
+}
+
+message UpdateBalanceRequest {
+    string id = 1;
+    double amount = 2;
+}
+
+message UpdateBalanceResponse {
+    string id = 1;
+    double newBalance = 2;
+}
+
+message DeleteAccountRequest {
+    string id = 1;
+}
+
+message DeleteAccountResponse {
+    string id = 1;
+    string message = 2;
+}
